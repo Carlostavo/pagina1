@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gestión de Residuos Sólidos — Editor Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand"><i class="fa-solid fa-recycle fa-xl"></i> Gestión RS</div>
+        <nav class="nav">
+            <a href="#" class="nav-link active" data-page="home">Inicio</a>
+            <a href="#" class="nav-link" data-page="indicadores">Indicadores</a>
+            <a href="#" class="nav-link disabled" data-page="metas">Metas</a>
+            <a href="#" class="nav-link disabled" data-page="avances">Avances</a>
+            <a href="#" class="nav-link disabled" data-page="reportes">Reportes</a>
+            <a href="#" class="nav-link" data-page="formularios">Formularios</a>
+            <button id="toggle-edit"><i class="fa-solid fa-pen-to-square"></i> Modo edición</button>
+            <button id="open-auth"><i class="fa-solid fa-right-to-bracket"></i> Iniciar sesión</button>
+            <button id="logout-btn"><i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión</button>
+            <span id="whoami" style="font-weight:700;display:none"></span>
+        </nav>
+    </header>
+
+    <main class="wrap" id="main-wrap">
+        <aside class="sidebar" id="sidebar">
+            <!-- Panel de edición (se mantiene igual) -->
+        </aside>
+
+        <section class="canvas-wrap">
+            <div class="canvas-toolbar" id="canvas-toolbar">
+                <span style="font-weight:800;color:#334155" class="label">Lienzo</span>
+                <div style="margin-left:auto;display:flex;gap:8px" class="buttons">
+                    <button class="tab" id="bring-front"><i class="fa-solid fa-arrow-up"></i> Frente</button>
+                    <button class="tab" id="send-back"><i class="fa-solid fa-arrow-down"></i> Fondo</button>
+                    <button class="tab" id="duplicate"><i class="fa-regular fa-copy"></i> Duplicar</button>
+                    <button class="tab" id="remove"><i class="fa-regular fa-trash-can"></i> Eliminar</button>
+                </div>
+            </div>
+            <div class="canvas" id="canvas"></div>
+            <div class="floatbar" id="floatbar">
+                <button id="fb-dup" title="Duplicar"><i class="fa-regular fa-copy"></i><span>Duplicar</span></button>
+                <button id="fb-front" title="Traer al frente"><i class="fa-solid fa-arrow-up"></i><span>Frente</span></button>
+                <button id="fb-back" title="Enviar al fondo"><i class="fa-solid fa-arrow-down"></i><span>Fondo</span></button>
+                <button id="fb-del" title="Eliminar"><i class="fa-regular fa-trash-can"></i><span>Eliminar</span></button>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="auth">
+        <div class="sheet">
+            <button class="close-x" id="auth-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Iniciar sesión</h2>
+            <div class="sheet-body">
+                <div class="field">
+                    <label for="login-email">Correo electrónico</label>
+                    <input id="login-email" type="email" placeholder="usuario@ejemplo.com">
+                </div>
+                <div class="field">
+                    <label for="login-pass">Contraseña</label>
+                    <input id="login-pass" type="password" placeholder="••••••••">
+                </div>
+                <button class="submit" id="btn-login">Entrar</button>
+                <button class="close-modal">Salir</button>
+                <p style="text-align:center;margin-top:16px;font-size:12px;color:#718096">
+                    ¿No tienes cuenta? <a href="#" id="show-signup">Regístrate aquí</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signup">
+        <div class="sheet">
+            <button class="close-x" id="signup-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Crear cuenta</h2>
+            <div class="sheet-body">
+                <div class="field">
+                    <label for="signup-email">Correo electrónico</label>
+                    <input id="signup-email" type="email" placeholder="usuario@ejemplo.com">
+                </div>
+                <div class="field">
+                    <label for="signup-pass">Contraseña</label>
+                    <input id="signup-pass" type="password" placeholder="Mínimo 8 caracteres">
+                </div>
+                <div class="field">
+                    <label for="signup-role">Rol</label>
+                    <select id="signup-role">
+                        <option value="viewer">Visualizador</option>
+                        <option value="tecnico">Técnico</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <button class="submit" id="btn-signup">Crear cuenta</button>
+                <button class="close-modal">Cancelar</button>
+                <p style="text-align:center;margin-top:16px;font-size:12px;color:#718096">
+                    ¿Ya tienes cuenta? <a href="#" id="show-login">Inicia sesión</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
